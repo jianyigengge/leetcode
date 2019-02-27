@@ -1,0 +1,40 @@
+方法一：消消乐
+
+时间复杂度最坏o((n/2)!)
+理解简单，其实就是根据由内而外的道理，遇见配对的括号就消除，最后消除完了就是有效的。
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        n = len(s)
+        if n == 0:
+            return True
+        if n % 2 != 0:
+            return False
+        while '()' in s or '{}' in s or '[]' in s:
+            s = s.replace('{}','').replace('()','').replace('[]','')
+        if s == '':
+            return True
+        else:
+            return False
+方法2：栈
+
+时间复杂度恒为o(n)
+首先特别情况，为空返回True，接下来逐个判断字符串中每个字符，若为左括号，加入栈中，若为右括号，且能与栈顶的左括号配对，删除栈顶元素，最后栈若为空则有效。
+    def isValid(self, s: str) -> bool:
+        if s == '':
+            return True
+        stack = []
+        for i in range(len(s)):
+            if len(stack) == 0:
+                stack.append(s[i])
+            elif stack[-1] + s[i] == '()' or stack[-1] + s[i] == '[]' or stack[-1] + s[i] == '{}':
+                stack.pop()
+            else:
+                stack.append(s[i])
+        return len(stack) == 0
+
+
+
+
