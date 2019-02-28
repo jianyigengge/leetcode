@@ -1,7 +1,9 @@
 26题：去除排序数组中的重复项
 输入：一个排序数组
 输出：程序中要求是去重后数组的长度
-看了很多双指针的方法，看的我头都大了，于是找到了比较简单的set方法
+
+看了很多双指针的方法，看的我头都大了，于是找到了比较简单的set方法，这里需要注意用set后再排序，并且需要将原数组中的元素替换一下，才会输出数组而不是数。
+
 [*]
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -13,4 +15,6 @@ class Solution:
             nums[i] = result[i]
         return len(result)
 [*]
-60ms,15MB
+
+时间：60ms
+空间：15MB
