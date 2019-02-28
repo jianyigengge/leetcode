@@ -1,0 +1,16 @@
+26题：去除排序数组中的重复项
+输入：一个排序数组
+输出：程序中要求是去重后数组的长度
+看了很多双指针的方法，看的我头都大了，于是找到了比较简单的set方法
+[*]
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        result = list(set(nums))
+        result.sort()
+        for i,v in enumerate(result):
+            nums[i] = result[i]
+        return len(result)
+[*]
+60ms,15MB
