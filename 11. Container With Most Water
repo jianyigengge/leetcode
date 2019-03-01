@@ -1,0 +1,34 @@
+方法一：暴力搜寻
+时间复杂度：o(n^2)
+空间复杂度：o(1)
+两个循环，一个从数组第一个数开始，一个从第二个数开始，计算所有矩形的面积，求出最大者，相当于把所有情况都计算了。
+[*]
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        maxarea = 0
+        for i in range(len(height)):
+            for j in range(i+1,len(height)):
+                maxarea = max(maxarea,min(height[i],height[j])*(j-i))
+        return maxarea
+[*]
+
+方法二：双指针
+时间复杂度：o(n)
+空间复杂度：o(1)
+一个指针从第一个数开始，一个从最后一个数开始，每次移动那个值比较小的指针（因为移动值大的指针不会得到更大的面积）并且记录一下面积：
+如果是第一个指针值小，那么往右移动一步，如果是最后一个指针值小，那么往左移动一步，每次都记录面积，得到最大的那个面积就是我们的输出。
+这个思想其实就是省去了不必要计算的一些长宽组合，指针一直朝着有可能使面积增大的方向移动，避开计算不必要的长宽组合。
+[*]
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        maxarea = 0
+        l = 0
+        r = len(height) - 1
+        while l<r:
+            maxarea = max(maxarea,min(height[l],height[r])*(r-l))
+            if height[l]<height[r]:
+                l += 1
+            else:
+                r -= 1
+        return maxarea
+[*]
