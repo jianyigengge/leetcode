@@ -1,0 +1,25 @@
+43:字符串相乘
+时间复杂度：o(m*n)
+空间复杂度：o(m+n)
+其实在python中直接使用int()函数就可以解决问题，leetcode上要求我们不使用大数相乘函数是因为在java中int一个很大的字符串，很可能会溢出。
+参考外国人的竖式乘法，可以得到num1[i]与num2[j]相乘对应的位数是i+j,i+j+1,因此我们新建一个长度为len(num1)+len(num2)的列表，不断累加即可。8
+[*]
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        res = [0] * (len(num1)+len(num2))
+        for i in range(len(num1)-1,-1,-1):
+            for j in range(len(num2)-1,-1,-1):
+                res[i+j+1] += int(num1[i])*int(num2[j])
+                res[i+j] += res[i+j+1] // 10
+                res[i+j+1] %= 10
+        k = 0
+        while k<len(res) and res[k] == 0:
+            k += 1
+        s = ''.join([str(_) for _ in res[k:]])
+        if s:
+            return s
+        else:
+            return '0'
+
+        
+[*]
