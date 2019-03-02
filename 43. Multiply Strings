@@ -3,6 +3,7 @@
 空间复杂度：o(m+n)
 其实在python中直接使用int()函数就可以解决问题，leetcode上要求我们不使用大数相乘函数是因为在java中int一个很大的字符串，很可能会溢出。
 参考外国人的竖式乘法，可以得到num1[i]与num2[j]相乘对应的位数是i+j,i+j+1,因此我们新建一个长度为len(num1)+len(num2)的列表，不断累加即可。
+此外，还要注意的是最后得到的列表中，我们需要将开头的0去掉。
 [*]
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
