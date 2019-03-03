@@ -1,0 +1,24 @@
+344:反转字符串
+时间复杂度：o(n)
+空间复杂度：o(1)
+双指针法（发现这个方法特别好用，去重，倒序，选择最大容器，两数之和，三数之和等等都可以用此方法，主要是可以节省时间到o(n)）
+[*]
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        if len(s)<2:
+            return 
+        l = 0
+        r = len(s)-1
+        while l<r:
+            temp = s[l]
+            s[l] = s[r]
+            s[r] = temp
+            l += 1
+            r -= 1   
+[*]
+也可以考虑用python中list自带的reverse函数list.reverse
+以及python内置函数reversed()
+如果没有in-place的限制，可以直接return s[::-1]
