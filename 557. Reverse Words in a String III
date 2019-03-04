@@ -1,0 +1,19 @@
+557：翻转每个单词
+注意：单个字符串的翻转使用char[::-1]方法，去掉倒数第一个字母使用索引char[:-1]
+方法一：
+[*]
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join([i[::-1] for i in s.split()])
+[*]
+
+方法二：
+[*]
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        l = s.split()
+        strr = ''
+        for char in l:
+            strr += char[::-1] + ' '
+        return strr[:-1]
+[*]
