@@ -1,0 +1,20 @@
+238. Product of Array Except Self
+时间复杂度：o(n)
+空间复杂度：o(n)
+这个题要求不用除法，也要求时间复杂度为o(n)，当即排除两种可用的方法：将所有数乘起来除以对应位置上的数以及嵌套循环
+最后是参考答案中的方法：先从左乘到右，再从右乘到左（太聪明了）
+[*]
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = []
+        l = 1
+        for i in range(n):
+            res.append(l)
+            l *= nums[i]
+        r = 1
+        for j in range(n-1,-1,-1):
+            res[j] *= r
+            r *= nums[j]
+        return res
+[*]
