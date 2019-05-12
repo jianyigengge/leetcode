@@ -1,0 +1,30 @@
+> 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+示例 1：
+输入: "babad"
+输出: "bab"
+注意: "aba" 也是一个有效答案。
+示例 2：
+输入: "cbbd"
+输出: "bb"
+
+* show the code:
+```
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[0]*len(s) for i in range(n)]
+        res = ''
+        for i in range(n-1,-1,-1):
+            for j in range(i,n):
+                dp[i][j] = (s[i] == s[j]) and (j-i<3 or dp[i+1][j-1])
+                if dp[i][j] and j-i+1>len(res):
+                    res = s[i:j+1]
+        return res
+```
+
+*  这道题关键是动态规划，使用DP能够减少计算不必要的过程。
+* 找到中间状态转移方程```P(i,j) = (P(i+1,j−1) and Si	
+ == Sj)```，其中```P(i,j)```是布尔值，我们需要新建一个nXn的二维数组来存储中间过程。
+* 这里注意我们的外层循环i从字符串右往左遍历，内层循环从左往右遍历，因为我们求dp矩阵的过程中，需要先计算某个位置右上角的值，即i+1.
+
+######知道是DP后，难点是弄清楚两层循环遍历的过程，以此来求出中间矩阵dp.
